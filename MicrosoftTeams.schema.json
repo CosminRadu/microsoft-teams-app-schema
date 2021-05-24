@@ -10,7 +10,7 @@
     "manifestVersion": {
       "type": "string",
       "description": "The version of the schema this manifest is using.",
-      "const": "devPreview"
+      "const": "devPreview2"
     },
     "version": {
       "type": "string",
@@ -261,6 +261,16 @@
       "required": [ "offerId" ],
       "additionalProperties": false
     },
+    "requirements": {
+      "properties": {
+        "apiSets": {
+          "$ref": "#/definitions/clientApiSets"
+        },
+        "elements": {
+          "$ref": "#/definitions/appFeatureTypes"
+        }
+      }
+    },
     "staticTabs": {
       "type": "array",
       "description": "A set of tabs that may be 'pinned' by default, without the user adding them manually. Static tabs declared in personal scope are always pinned to the app's personal experience. Static tabs do not currently support the 'teams' scope.",
@@ -328,6 +338,13 @@
                 "mobile",
                 "teamsMeetingDevices"
               ]
+            }
+          },
+          "requirements": {
+            "properties": {
+              "apiSets": {
+                "$ref": "#/definitions/clientApiSets"
+              }
             }
           }
         },
@@ -907,6 +924,65 @@
       "type": "string",
       "pattern": "^((([0-9]*\\.)?[0-9]+)|[lL][aA][rR][gG][eE]|[mM][eE][dD][iI][uU][mM]|[sS][mM][aA][lL][lL])$",
       "maxLength": 16
+    },
+    "clientApiSets": {
+      "type": "array",
+      "description": "Array of client API sets",
+      "maxItems": 18,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "name of the API Set",
+            "enum": [
+              "app",
+              "auth",
+              "chat",
+              "custom",
+              "deepLinks",
+              "dialogs",
+              "files",
+              "location",
+              "logs",
+              "media",
+              "meeting",
+              "menus",
+              "notifications",
+              "pages",
+              "pages.backStack",
+              "pages.config",
+              "pages.fullTrust",
+              "teams.fullTrust"
+            ]
+          }
+        }
+      }
+    },
+    "appFeatureTypes": {
+      "type": "array",
+      "description": "Set of app feature types",
+      "maxItems": 7,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Type of the app feature",
+            "enum": [
+              "personalApp",
+              "groupChannelApp",
+              "bots",
+              "messagingExtensions",
+              "connectors",
+              "meetingExtensions",
+              "scenes"
+            ]
+          }
+        }
+      }
     }
   }
 }
