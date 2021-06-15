@@ -10,7 +10,7 @@
     "manifestVersion": {
       "type": "string",
       "description": "The version of the schema this manifest is using.",
-      "const": "devPreview2"
+      "enum": ["devPreview", "m365DevPreview"]
     },
     "version": {
       "type": "string",
@@ -928,7 +928,7 @@
     "clientApiSets": {
       "type": "array",
       "description": "Array of client API sets",
-      "maxItems": 18,
+      "maxItems": 15,
       "items": {
         "type": "object",
         "additionalProperties": false,
@@ -937,8 +937,6 @@
             "type": "string",
             "description": "name of the API Set",
             "enum": [
-              "app",
-              "auth",
               "chat",
               "custom",
               "deepLinks",
@@ -950,7 +948,6 @@
               "meeting",
               "menus",
               "notifications",
-              "pages",
               "pages.backStack",
               "pages.config",
               "pages.fullTrust",
